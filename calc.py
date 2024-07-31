@@ -19,25 +19,24 @@ def equation(operation,first_number,second_number,num_for_equ,result):
     elif operation == "4" :
         logging.info("Dzielę %d przez %d" % (first_number,second_number))
         print(f"Wynik to {first_number / second_number}")
-    else:
-        logging.info("Niepoprawnie zdefiniowałeś działanie")
+
 
 if __name__ == "__main__":
 
     result = 0
     num_for_equ=[]
-    while 3>0:
+    while True:
         operation = input("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: ")
-        if operation == "1" or operation == "2" or operation == "3" or operation == "4":
+        print(operation)
+        if  operation in ["1" ,"2" , "3" , "4"]:
             break
         else:
             print("Niepoprawnie zdefiniowałeś działanie, to na prawdę proste - odszukaj na klawiaturze cyfry 1,2,3,4.")
 
-    if operation == "1" or operation =="3":
-        while 4>0:
+    if operation in ["1","3"]:
+        while True:
             count_number = input("Podaj liczbę składników których chesz uzyć do zdefiniowanego działania: ")
             try:
-                int(count_number)
                 count_number = int(count_number)
                 if count_number < 2:
                     print("liczba składników do wykonania zadanego diałania to min 2.")
@@ -46,10 +45,9 @@ if __name__ == "__main__":
             except:
                 print("Nie wprowadzono poprawnie liczby składników zdefiniowanego działania. Napisz dla ilu liczb chcesz wykonać dodawanie lub mnożenie.")
         for i in range(count_number):
-            while 3>0:
+            while True:
                 num_for_equ.append(input("Podaj %d z %d liczb która będzie użyta do zdefiniowanego działania: " % (i+1,count_number)))
                 try:
-                    float(num_for_equ[i])
                     num_for_equ[i] = float(num_for_equ[i])
                     break
                 except:
@@ -58,19 +56,17 @@ if __name__ == "__main__":
         first_number = 0
         second_number = 0
     else:
-        while 3>0:
-            first_number = (input("Podaj składnik 1. "))
+        while True:
+            first_number = input("Podaj składnik 1. ")
             try:
-                float(first_number)
                 first_number = float(first_number)
                 break
             except:
                 print("Nie wprowadzono poprawnie liczby, stać Cię na więcej...")
         
-        while 4>0:
-            second_number = (input("Podaj składnik 2. "))
+        while True:
+            second_number = input("Podaj składnik 2. ")
             try:
-                float(second_number)
                 second_number = float(second_number)
                 break
             except:
