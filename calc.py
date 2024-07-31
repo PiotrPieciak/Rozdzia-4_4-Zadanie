@@ -6,7 +6,7 @@ def equation_multi_sum(operation,num_for_equ,result):
     if operation == "1":
         logging.info(f"Dodaję liczby: {num_for_equ} ")
         for i in num_for_equ:
-            result=result+1
+            result=result+i
         print(f"Wynik to {result}")
     else:
         result = 1 
