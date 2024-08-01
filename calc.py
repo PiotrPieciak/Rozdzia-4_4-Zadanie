@@ -4,13 +4,19 @@ logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 #Funkcja dla operacji dodawania i mnożenia
 def equation_multi_sum(operation,num_for_equ,result):
     if operation == "1":
-        logging.info(f"Dodaję liczby: {num_for_equ} ")
+        text_num_for_equ = ""
+        for i in num_for_equ:
+            text_num_for_equ = text_num_for_equ + str(i) + "   "
+        logging.info(f"Dodaję liczby: {text_num_for_equ} ")
         for i in num_for_equ:
             result += i
         print(f"Wynik to {result}")
     else:
+        text_num_for_equ = ""
         result = 1 
-        logging.info(f"Mnożę liczby: {num_for_equ} ")
+        for i in num_for_equ:
+            text_num_for_equ = text_num_for_equ + str(i) + "   "
+        logging.info(f"Mnożę liczby: {text_num_for_equ} ")
         for i in num_for_equ:
             result *= i
         print(f"Wynik to {result}")
@@ -27,6 +33,16 @@ def equation_subtract_devide(operation,first_number,second_number):
 #funkcja informująca o podaniu nieprawidłowej zmiennej
 def wrong_number():
     print("Nie wprowadzono poprawnie liczby, spróbuj jeszcze raz. ")
+
+#Funkcja pobierająca dane w przypadku odejmowania i dzielenia
+def collect_numbers(text):
+        while True:
+            number = input(text)
+            try:
+                number = float(number)
+                return number
+            except:
+                wrong_number()
 
 #Początek głównego programu
 if __name__ == "__main__":
@@ -67,25 +83,16 @@ if __name__ == "__main__":
         
 # Dla operacji odejmowania i dzielenia użyjemy prostszej funkcji, gdyż wymagają jedynie 2 argumentów
     else:
+        first_number = collect_numbers("Podaj pierwszą liczbę: ")
+        #Obsługa przypadku dzielenia przez zero i pobranie drugiej zmiennej
         while True:
-            first_number = input("Podaj składnik 1. ")
-            try:
-                first_number = float(first_number)
+            second_number = collect_numbers("Podaj drugą liczbę: ")
+            if second_number != 0:
                 break
-            except:
+            else:
                 wrong_number()
-        while True:
-            second_number = input("Podaj składnik 2. ")
-            # Obsługa przypadku dzielenia przez zero
-            if second_number == "0": 
-                wrong_number()
-                continue
-            try:
-                second_number = float(second_number)
-                break
-            except:
-                wrong_number()
-        #Uruchamiamy fucnkcę wyłącznie dla przypadku dzielenia lub odejmowania
+    
+        #Uruchamiamy funkcję wyłącznie dla przypadku dzielenia lub odejmowania
         equation_subtract_devide(operation,first_number,second_number)
 
 
