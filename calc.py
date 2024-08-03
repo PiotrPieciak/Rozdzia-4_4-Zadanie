@@ -2,23 +2,22 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format='%(message)s')
 
 #Funkcja dla operacji dodawania i mnożenia
-def equation_multi_sum(operation,num_for_equ,result):
+def equation_multi_sum(operation,num_for_equ):
     if operation == "1":
+        result = 0
         text_num_for_equ = ""
         for i in num_for_equ:
             text_num_for_equ = text_num_for_equ + str(i) + "   "
-        logging.info(f"Dodaję liczby: {text_num_for_equ} ")
-        for i in num_for_equ:
             result += i
+        logging.info(f"Dodaję liczby: {text_num_for_equ} ")
         print(f"Wynik to {result}")
     else:
         text_num_for_equ = ""
         result = 1 
         for i in num_for_equ:
             text_num_for_equ = text_num_for_equ + str(i) + "   "
-        logging.info(f"Mnożę liczby: {text_num_for_equ} ")
-        for i in num_for_equ:
             result *= i
+        logging.info(f"Mnożę liczby: {text_num_for_equ} ")
         print(f"Wynik to {result}")
 
 #Funkcja dla operacji odejmowania i dzielenia
@@ -47,8 +46,6 @@ def collect_numbers(text):
 #Początek głównego programu
 if __name__ == "__main__":
 
-    result = 0
-    num_for_equ=[]
 #Prosimy uzytkownika o zdefiniowanie rodaju operacji + - * /
     while True:
         operation = input("Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: ")
@@ -69,6 +66,7 @@ if __name__ == "__main__":
                     break
             except:
                 wrong_number()
+        num_for_equ=[]
         for i in range(count_number):
             while True:
                 num_for_equ.append(input("Podaj %d z %d liczb która będzie użyta do zdefiniowanego działania: " % (i+1,count_number)))
@@ -79,7 +77,7 @@ if __name__ == "__main__":
                     wrong_number()
                     del num_for_equ[i]
         #Uruchamiamy fucnkcę wyłącznie dla przypadku mnożenia lub dodawania
-        equation_multi_sum(operation,num_for_equ,result)
+        equation_multi_sum(operation,num_for_equ)
         
 # Dla operacji odejmowania i dzielenia użyjemy prostszej funkcji, gdyż wymagają jedynie 2 argumentów
     else:
